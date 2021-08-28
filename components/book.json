@@ -1,0 +1,178 @@
+{
+	"type": "modal",
+	"callback_id": "modal_view",
+	"title": {
+		"type": "plain_text",
+		"text": "My App",
+		"emoji": true
+	},
+	"submit": {
+		"type": "plain_text",
+		"text": "Submit",
+		"emoji": true
+	},
+	"close": {
+		"type": "plain_text",
+		"text": "Cancel",
+		"emoji": true
+	},
+	"blocks": [
+		{
+			"type": "section",
+			"text": {
+				"type": "plain_text",
+				"text": "以下で鍵の予約をお願いします！",
+				"emoji": true
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*どの教室、部屋を使う予定ですか？*\n例) 中学:1-4 高校:2-7 3501 体育館"
+			},
+			"accessory": {
+				"type": "static_select",
+				"placeholder": {
+					"type": "plain_text",
+					"emoji": true,
+					"text": "中学:1-4"
+				},
+				"options": [
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "高校:2-7"
+						},
+						"value": "value-0"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "3501"
+						},
+						"value": "value-1"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "体育館"
+						},
+						"value": "value-2"
+					}
+				],
+				"action_id": "add_place"
+			}
+		},
+		{
+			"type": "divider"
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*いつ使いますか？*\n例) 2021/09/05"
+			},
+			"accessory": {
+				"type": "datepicker",
+				"initial_date": "2021-09-03",
+				"placeholder": {
+					"type": "plain_text",
+					"text": "Select a date",
+					"emoji": true
+				},
+				"action_id": "datepicker_action"
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*何時から鍵を使用しますか？*\n例) 16時 放課後 昼休み"
+			},
+			"accessory": {
+				"type": "static_select",
+				"placeholder": {
+					"type": "plain_text",
+					"emoji": true,
+					"text": "Manage"
+				},
+				"options": [
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "16時"
+						},
+						"value": "value-0"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "放課後"
+						},
+						"value": "value-1"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "昼休み"
+						},
+						"value": "value-2"
+					}
+				],
+				"action_id": "add_start_time"
+			}
+		},
+		{
+			"type": "section",
+			"text": {
+				"type": "mrkdwn",
+				"text": "*何時まで教室、部屋を使用しますか？*\n例) 18時 完全下校時 2限終了時"
+			},
+			"accessory": {
+				"type": "static_select",
+				"placeholder": {
+					"type": "plain_text",
+					"emoji": true,
+					"text": "Manage"
+				},
+				"options": [
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "18時"
+						},
+						"value": "value-0"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "完全下校時"
+						},
+						"value": "value-1"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "2限終了時"
+						},
+						"value": "value-2"
+					}
+				],
+				"action_id": "add_finish_time"
+			}
+		},
+		{
+			"type": "divider"
+		}
+	]
+}
