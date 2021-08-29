@@ -27,6 +27,7 @@
 		},
 		{
 			"type": "section",
+			"block_id":"block_place",
 			"text": {
 				"type": "mrkdwn",
 				"text": "*どの教室、部屋を使う予定ですか？*\n例) 中学:1-4 高校:2-7 3501 体育館"
@@ -38,8 +39,7 @@
 					"emoji": true,
 					"text": "中学:1-4"
 				},
-				"options": [
-					{
+				"options": [{
 						"text": {
 							"type": "plain_text",
 							"emoji": true,
@@ -72,6 +72,7 @@
 		},
 		{
 			"type": "section",
+			"block_id":"block_date",
 			"text": {
 				"type": "mrkdwn",
 				"text": "*いつ使いますか？*\n例) 2021/09/05"
@@ -84,11 +85,12 @@
 					"text": "Select a date",
 					"emoji": true
 				},
-				"action_id": "datepicker_action"
+				"action_id": "add_date"
 			}
 		},
 		{
 			"type": "section",
+			"block_id":"block_start_time",
 			"text": {
 				"type": "mrkdwn",
 				"text": "*何時から鍵を使用しますか？*\n例) 16時 放課後 昼休み"
@@ -98,14 +100,14 @@
 				"placeholder": {
 					"type": "plain_text",
 					"emoji": true,
-					"text": "Manage"
+					"text": "1限:開始時"
 				},
 				"options": [
 					{
 						"text": {
 							"type": "plain_text",
 							"emoji": true,
-							"text": "16時"
+							"text": "1限:開始時"
 						},
 						"value": "value-0"
 					},
@@ -113,7 +115,15 @@
 						"text": {
 							"type": "plain_text",
 							"emoji": true,
-							"text": "放課後"
+							"text": "2限:開始時"
+						},
+						"value": "value-0"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "3限:開始時"
 						},
 						"value": "value-1"
 					},
@@ -121,16 +131,129 @@
 						"text": {
 							"type": "plain_text",
 							"emoji": true,
-							"text": "昼休み"
+							"text": "4限:開始時"
+						},
+						"value": "value-2"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "5限:開始時"
+						},
+						"value": "value-2"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "6限:開始時"
+						},
+						"value": "value-2"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "7限:開始時"
+						},
+						"value": "value-2"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "8限:開始時"
+						},
+						"value": "value-2"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "1限:終了時"
+						},
+						"value": "value-2"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "2限:終了時"
+						},
+						"value": "value-2"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "3限:終了時"
+						},
+						"value": "value-2"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "4限:終了時"
+						},
+						"value": "value-2"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "5限:終了時"
+						},
+						"value": "value-2"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "6限:終了時"
+						},
+						"value": "value-2"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "7限:終了時"
+						},
+						"value": "value-2"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "8限:終了時"
+						},
+						"value": "value-2"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "昼休み:開始時"
+						},
+						"value": "value-2"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "昼休み:終了時"
 						},
 						"value": "value-2"
 					}
 				],
-				"action_id": "add_start_time"
+				"action_id": "add_start_time"		
 			}
 		},
 		{
 			"type": "section",
+			"block_id":"block_finish_time",
 			"text": {
 				"type": "mrkdwn",
 				"text": "*何時まで教室、部屋を使用しますか？*\n例) 18時 完全下校時 2限終了時"
@@ -142,8 +265,7 @@
 					"emoji": true,
 					"text": "Manage"
 				},
-				"options": [
-					{
+				"options": [{
 						"text": {
 							"type": "plain_text",
 							"emoji": true,
