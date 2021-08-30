@@ -23,6 +23,7 @@ const firstMessage = async() =>{
     }; 
     await client.chat.postMessage(params);
 }
+
 //bookコマンド 送信後のメッセージ
 const checkMessage = async(place_data,date_data,start_data,finish_data,user_name) =>{
     const user = "@" + user_name
@@ -76,8 +77,6 @@ app.view('modal_view', async ({ ack, body, view, client }) => {
     console.log(memo);
     checkMessage(place_data,date_data,start_data,finish_data,body.user.name);
 });
-
-
 
 (async () => {
     await app.start(3000);

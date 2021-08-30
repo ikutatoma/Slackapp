@@ -21,7 +21,7 @@
 			"type": "section",
 			"text": {
 				"type": "plain_text",
-				"text": "以下で鍵の予約をお願いします！",
+				"text": "以下で鍵の予約をお願いします！選択肢から選ぶこともできますが、打ち込んで選ぶこともできます！",
 				"emoji": true
 			}
 		},
@@ -39,29 +39,350 @@
 					"emoji": true,
 					"text": "中学:1-4"
 				},
-				"options": [{
+				"options": [
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "中学:1-1"
+						},
+						"value": "value-0-0"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "中学:1-2"
+						},
+						"value": "value-0-1"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "中学:1-3"
+						},
+						"value": "value-0-2"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "中学:1-4"
+						},
+						"value": "value-0-3"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "中学:1-4"
+						},
+						"value": "value-0-3"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "中学:1-5"
+						},
+						"value": "value-0-4"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "中学:2-1"
+						},
+						"value": "value-0-5"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "中学:2-2"
+						},
+						"value": "value-0-6"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "中学:2-3"
+						},
+						"value": "value-0-7"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "中学2-4"
+						},
+						"value": "value-0-8"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "中学:2-5"
+						},
+						"value": "value-0-9"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "中学:3-1"
+						},
+						"value": "value-0-10"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "中学:3-2"
+						},
+						"value": "value-0-11"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "中学:3-3"
+						},
+						"value": "value-0-12"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "中学:3-4"
+						},
+						"value": "value-0-13"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "中学:3-5"
+						},
+						"value": "value-0-14"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "高校:1-1"
+						},
+						"value": "value-0-15"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "高校:1-2"
+						},
+						"value": "value-0-16"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "高校:1-3"
+						},
+						"value": "value-0-17"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "高校:1-4"
+						},
+						"value": "value-0-18"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "高校:1-5"
+						},
+						"value": "value-0-19"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "高校:1-6"
+						},
+						"value": "value-0-20"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "高校:1-7"
+						},
+						"value": "value-0-21"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "高校:1-8"
+						},
+						"value": "value-0-22"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "高校:1-9"
+						},
+						"value": "value-0-23"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "高校:2-1"
+						},
+						"value": "value-0-24"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "高校:2-2"
+						},
+						"value": "value-0-25"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "高校:2-3"
+						},
+						"value": "value-0-26"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "高校:2-4"
+						},
+						"value": "value-0-27"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "高校:2-5"
+						},
+						"value": "value-0-28"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "高校:2-6"
+						},
+						"value": "value-0-29"
+					},
+					{
 						"text": {
 							"type": "plain_text",
 							"emoji": true,
 							"text": "高校:2-7"
 						},
-						"value": "value-0"
+						"value": "value-0-30"
 					},
 					{
 						"text": {
 							"type": "plain_text",
 							"emoji": true,
-							"text": "3501"
+							"text": "高校:2-8"
 						},
-						"value": "value-1"
+						"value": "value-0-31"
 					},
 					{
 						"text": {
 							"type": "plain_text",
 							"emoji": true,
-							"text": "体育館"
+							"text": "高校:2-9"
 						},
-						"value": "value-2"
+						"value": "value-0-32"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "高校:3-1"
+						},
+						"value": "value-0-33"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "高校:3-2"
+						},
+						"value": "value-0-34"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "高校:3-3"
+						},
+						"value": "value-0-35"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "高校:3-4"
+						},
+						"value": "value-0-36"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "高校:3-5"
+						},
+						"value": "value-0-37"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "高校:3-6"
+						},
+						"value": "value-0-38"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "高校:3-7"
+						},
+						"value": "value-0-39"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "高校:3-8"
+						},
+						"value": "value-0-40"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "高校:3-9"
+						},
+						"value": "value-0-41"
 					}
 				],
 				"action_id": "add_place"
@@ -117,7 +438,7 @@
 							"emoji": true,
 							"text": "2限:開始時"
 						},
-						"value": "value-0"
+						"value": "value-1"
 					},
 					{
 						"text": {
@@ -125,7 +446,7 @@
 							"emoji": true,
 							"text": "3限:開始時"
 						},
-						"value": "value-1"
+						"value": "value-2"
 					},
 					{
 						"text": {
@@ -133,7 +454,7 @@
 							"emoji": true,
 							"text": "4限:開始時"
 						},
-						"value": "value-2"
+						"value": "value-3"
 					},
 					{
 						"text": {
@@ -141,7 +462,7 @@
 							"emoji": true,
 							"text": "5限:開始時"
 						},
-						"value": "value-2"
+						"value": "value-4"
 					},
 					{
 						"text": {
@@ -149,7 +470,7 @@
 							"emoji": true,
 							"text": "6限:開始時"
 						},
-						"value": "value-2"
+						"value": "value-5"
 					},
 					{
 						"text": {
@@ -157,7 +478,7 @@
 							"emoji": true,
 							"text": "7限:開始時"
 						},
-						"value": "value-2"
+						"value": "value-6"
 					},
 					{
 						"text": {
@@ -165,7 +486,7 @@
 							"emoji": true,
 							"text": "8限:開始時"
 						},
-						"value": "value-2"
+						"value": "value-7"
 					},
 					{
 						"text": {
@@ -173,7 +494,7 @@
 							"emoji": true,
 							"text": "1限:終了時"
 						},
-						"value": "value-2"
+						"value": "value-8"
 					},
 					{
 						"text": {
@@ -181,7 +502,7 @@
 							"emoji": true,
 							"text": "2限:終了時"
 						},
-						"value": "value-2"
+						"value": "value-9"
 					},
 					{
 						"text": {
@@ -189,7 +510,7 @@
 							"emoji": true,
 							"text": "3限:終了時"
 						},
-						"value": "value-2"
+						"value": "value-10"
 					},
 					{
 						"text": {
@@ -197,7 +518,7 @@
 							"emoji": true,
 							"text": "4限:終了時"
 						},
-						"value": "value-2"
+						"value": "value-11"
 					},
 					{
 						"text": {
@@ -205,7 +526,7 @@
 							"emoji": true,
 							"text": "5限:終了時"
 						},
-						"value": "value-2"
+						"value": "value-12"
 					},
 					{
 						"text": {
@@ -213,7 +534,7 @@
 							"emoji": true,
 							"text": "6限:終了時"
 						},
-						"value": "value-2"
+						"value": "value-13"
 					},
 					{
 						"text": {
@@ -221,7 +542,7 @@
 							"emoji": true,
 							"text": "7限:終了時"
 						},
-						"value": "value-2"
+						"value": "value-14"
 					},
 					{
 						"text": {
@@ -229,7 +550,7 @@
 							"emoji": true,
 							"text": "8限:終了時"
 						},
-						"value": "value-2"
+						"value": "value-15"
 					},
 					{
 						"text": {
@@ -237,7 +558,7 @@
 							"emoji": true,
 							"text": "昼休み:開始時"
 						},
-						"value": "value-2"
+						"value": "value-16"
 					},
 					{
 						"text": {
@@ -245,7 +566,23 @@
 							"emoji": true,
 							"text": "昼休み:終了時"
 						},
-						"value": "value-2"
+						"value": "value-17"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "放課後:開始時"
+						},
+						"value": "value-18"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "放課後:終了時"
+						},
+						"value": "value-19"
 					}
 				],
 				"action_id": "add_start_time"		
@@ -263,31 +600,176 @@
 				"placeholder": {
 					"type": "plain_text",
 					"emoji": true,
-					"text": "Manage"
+					"text": "昼休み:終了時"
 				},
-				"options": [{
+				"options": [
+					{
 						"text": {
 							"type": "plain_text",
 							"emoji": true,
-							"text": "18時"
+							"text": "1限:開始時"
 						},
-						"value": "value-0"
+						"value": "value-20"
 					},
 					{
 						"text": {
 							"type": "plain_text",
 							"emoji": true,
-							"text": "完全下校時"
+							"text": "2限:開始時"
 						},
-						"value": "value-1"
+						"value": "value-21"
 					},
 					{
 						"text": {
 							"type": "plain_text",
 							"emoji": true,
-							"text": "2限終了時"
+							"text": "3限:開始時"
 						},
-						"value": "value-2"
+						"value": "value-22"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "4限:開始時"
+						},
+						"value": "value-23"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "5限:開始時"
+						},
+						"value": "value-24"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "6限:開始時"
+						},
+						"value": "value-25"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "7限:開始時"
+						},
+						"value": "value-26"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "8限:開始時"
+						},
+						"value": "value-27"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "1限:終了時"
+						},
+						"value": "value-28"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "2限:終了時"
+						},
+						"value": "value-29"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "3限:終了時"
+						},
+						"value": "value-30"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "4限:終了時"
+						},
+						"value": "value-31"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "5限:終了時"
+						},
+						"value": "value-32"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "6限:終了時"
+						},
+						"value": "value-33"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "7限:終了時"
+						},
+						"value": "value-34"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "8限:終了時"
+						},
+						"value": "value-35"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "昼休み:開始時"
+						},
+						"value": "value-36"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "昼休み:終了時"
+						},
+						"value": "value-37"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "放課後:開始時"
+						},
+						"value": "value-38"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "放課後:終了時"
+						},
+						"value": "value-39"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "終日"
+						},
+						"value": "value-40"
 					}
 				],
 				"action_id": "add_finish_time"
