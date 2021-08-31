@@ -1,10 +1,11 @@
+//const book = require('./components/book');
 const book = require('./components/book');
 const {App} = require('@slack/bolt');
 const { WebClient } = require('@slack/web-api');
 
 let memo = [];
 let today = new Date();
-book.blocks[3].accessory.initial_date = today.getFullYear() + "-" +  (today.getMonth() + 1) + "-"+ today.getDate();
+//book.blocks[3].accessory.initial_date = today.getFullYear() + "-" +  (today.getMonth() + 1) + "-"+ today.getDate();
 
 const token = "xoxb-2373497621991-2411908742896-iz21znKQCqtRCCEAi9ExhRim";
 const signingSecret = "9a9b592ece65b941f12e58a65130a396";
@@ -67,15 +68,25 @@ app.action('add_finish_time', async ({ack,respond,action}) => {
 });
 
 //bookコマンド modal submit時
-app.view('modal_view', async ({ ack, body, view, client }) => {
-    await ack();
-    var place_data = view["state"]["values"]["block_place"].add_place.selected_option.text.text;
-    var date_data = view["state"]["values"]["block_date"].add_date.selected_date;
-    var start_data = view["state"]["values"]["block_start_time"].add_start_time.selected_option.text.text;
-    var finish_data = view["state"]["values"]["block_finish_time"].add_finish_time.selected_option.text.text;
-    memo.push(place_data,date_data,start_data,finish_data);
-    console.log(memo);
-    checkMessage(place_data,date_data,start_data,finish_data,body.user.name);
+app.view('modal_view', async ({ ack, body, view}) => {
+    if(view["state"]["values"]["block_place"]["add_place"].selected_option == null) { 
+        ack(
+            {
+                "response_action": "errors",    
+                "errors": {
+                "block_place": "error message"
+            }
+        }); // 異常系
+        
+    } else {
+        ack(); // 正常系
+        var place_data = view["state"]["values"]["block_place"]["add_place"].selected_option.text.text;
+        var date_data = view["state"]["values"]["block_date"]["add_date"].selected_date;
+        var start_data = view["state"]["values"]["block_start_time"]["add_start_time"].selected_option.text.text;
+        var finish_data = view["state"]["values"]["block_finish_time"]["add_finish_time"].selected_option.text.text;
+        memo.push(place_data,date_data,start_data,finish_data);
+        checkMessage(place_data,date_data,start_data,finish_data,body.user.name);
+    }
 });
 
 (async () => {

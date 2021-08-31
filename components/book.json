@@ -1,6 +1,5 @@
 {
 	"type": "modal",
-	"callback_id": "modal_view",
 	"title": {
 		"type": "plain_text",
 		"text": "My App",
@@ -16,31 +15,17 @@
 		"text": "Cancel",
 		"emoji": true
 	},
-	"blocks": [
-		{
-			"type": "section",
-			"text": {
-				"type": "plain_text",
-				"text": "以下で鍵の予約をお願いします！選択肢から選ぶこともできますが、打ち込んで選ぶこともできます！",
-				"emoji": true
-			}
-		},
-		{
-			"type": "section",
-			"block_id":"block_place",
-			"text": {
-				"type": "mrkdwn",
-				"text": "*どの教室、部屋を使う予定ですか？*\n例) 中学:1-4 高校:2-7 3501 体育館"
-			},
-			"accessory": {
+	"blocks": [{
+			"type": "input",
+			"block_id": "block_place",
+			"element": {
 				"type": "static_select",
 				"placeholder": {
 					"type": "plain_text",
-					"emoji": true,
-					"text": "中学:1-4"
+					"text": "Select an item",
+					"emoji": true
 				},
-				"options": [
-					{
+				"options": [{
 						"text": {
 							"type": "plain_text",
 							"emoji": true,
@@ -386,45 +371,43 @@
 					}
 				],
 				"action_id": "add_place"
+			},
+			"label": {
+				"type": "plain_text",
+				"text": "Label",
+				"emoji": true
 			}
 		},
 		{
-			"type": "divider"
-		},
-		{
-			"type": "section",
-			"block_id":"block_date",
-			"text": {
-				"type": "mrkdwn",
-				"text": "*いつ使いますか？*\n例) 2021/09/05"
-			},
-			"accessory": {
+			"type": "input",
+			"block_id": "block_date",
+			"element": {
 				"type": "datepicker",
-				"initial_date": "2021-09-03",
+				"initial_date": "1990-04-28",
 				"placeholder": {
 					"type": "plain_text",
 					"text": "Select a date",
 					"emoji": true
 				},
 				"action_id": "add_date"
+			},
+			"label": {
+				"type": "plain_text",
+				"text": "Label",
+				"emoji": true
 			}
 		},
 		{
-			"type": "section",
-			"block_id":"block_start_time",
-			"text": {
-				"type": "mrkdwn",
-				"text": "*何時から鍵を使用しますか？*\n例) 16時 放課後 昼休み"
-			},
-			"accessory": {
+			"type": "input",
+			"block_id": "block_start_time",
+			"element": {
 				"type": "static_select",
 				"placeholder": {
 					"type": "plain_text",
-					"emoji": true,
-					"text": "1限:開始時"
+					"text": "Select an item",
+					"emoji": true
 				},
-				"options": [
-					{
+				"options": [{
 						"text": {
 							"type": "plain_text",
 							"emoji": true,
@@ -585,25 +568,25 @@
 						"value": "value-19"
 					}
 				],
-				"action_id": "add_start_time"		
+				"action_id": "add_start_time"
+			},
+			"label": {
+				"type": "plain_text",
+				"text": "Label",
+				"emoji": true
 			}
 		},
 		{
-			"type": "section",
-			"block_id":"block_finish_time",
-			"text": {
-				"type": "mrkdwn",
-				"text": "*何時まで教室、部屋を使用しますか？*\n例) 18時 完全下校時 2限終了時"
-			},
-			"accessory": {
+			"type": "input",
+			"block_id": "block_finish_time",
+			"element": {
 				"type": "static_select",
 				"placeholder": {
 					"type": "plain_text",
-					"emoji": true,
-					"text": "昼休み:終了時"
+					"text": "Select an item",
+					"emoji": true
 				},
-				"options": [
-					{
+				"options": [{
 						"text": {
 							"type": "plain_text",
 							"emoji": true,
@@ -773,10 +756,12 @@
 					}
 				],
 				"action_id": "add_finish_time"
+			},
+			"label": {
+				"type": "plain_text",
+				"text": "Label",
+				"emoji": true
 			}
-		},
-		{
-			"type": "divider"
 		}
 	]
 }
