@@ -1,5 +1,6 @@
 {
 	"type": "modal",
+	"callback_id" :"modal_view",
 	"title": {
 		"type": "plain_text",
 		"text": "My App",
@@ -25,7 +26,8 @@
 					"text": "Select an item",
 					"emoji": true
 				},
-				"options": [{
+				"options": [
+					{
 						"text": {
 							"type": "plain_text",
 							"emoji": true,
@@ -383,7 +385,7 @@
 			"block_id": "block_date",
 			"element": {
 				"type": "datepicker",
-				"initial_date": "1990-04-28",
+				"initial_date": "2021-8-31",
 				"placeholder": {
 					"type": "plain_text",
 					"text": "Select a date",
@@ -407,7 +409,8 @@
 					"text": "Select an item",
 					"emoji": true
 				},
-				"options": [{
+				"options": [
+					{
 						"text": {
 							"type": "plain_text",
 							"emoji": true,
