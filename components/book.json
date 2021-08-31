@@ -16,7 +16,16 @@
 		"text": "Cancel",
 		"emoji": true
 	},
-	"blocks": [{
+	"blocks": [
+		{
+			"type": "section",
+			"text": {
+				"type": "plain_text",
+				"text": "以下のFormで鍵の管理を行ってください！選んでもらっても、打ち込んでもらっても構いません！",
+				"emoji": true
+			}
+		},
+		{
 			"type": "input",
 			"block_id": "block_place",
 			"element": {
@@ -370,13 +379,157 @@
 							"text": "高校:3-9"
 						},
 						"value": "value-0-41"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "体育館:２階"
+						},
+						"value": "value-1-1"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "体育館:柔道室"
+						},
+						"value": "value-1-2"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "体育館:剣道場"
+						},
+						"value": "value-1-3"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "体育館:トレーニング室"
+						},
+						"value": "value-1-4"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "音楽室"
+						},
+						"value": "value-2-1"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "書道室"
+						},
+						"value": "value-3-1"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "美術室"
+						},
+						"value": "value-4-1"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "保健室"
+						},
+						"value": "value-5-1"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "メディアホール"
+						},
+						"value": "value-6-1"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "サブアリーナ"
+						},
+						"value": "value-7-1"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "情報室:1"
+						},
+						"value": "value-8-1"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "情報室:2"
+						},
+						"value": "value-8-2"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "技術室"
+						},
+						"value": "value-9-1"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "理科室:1"
+						},
+						"value": "value-10-1"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "理科室:2"
+						},
+						"value": "value-10-2"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "理科室:3"
+						},
+						"value": "value-10-3"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "物理実験室:1"
+						},
+						"value": "value-11-1"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"emoji": true,
+							"text": "生物実験室:2"
+						},
+						"value": "value-12-1"
 					}
 				],
 				"action_id": "add_place"
 			},
 			"label": {
 				"type": "plain_text",
-				"text": "Label",
+				"text": "使いたい教室を選んでください！",
 				"emoji": true
 			}
 		},
@@ -395,7 +548,7 @@
 			},
 			"label": {
 				"type": "plain_text",
-				"text": "Label",
+				"text": "使いたい日付を選んでください！",
 				"emoji": true
 			}
 		},
@@ -575,7 +728,7 @@
 			},
 			"label": {
 				"type": "plain_text",
-				"text": "Label",
+				"text": "いつから使いますか?",
 				"emoji": true
 			}
 		},
@@ -762,7 +915,7 @@
 			},
 			"label": {
 				"type": "plain_text",
-				"text": "Label",
+				"text": "いつまで使いますか？",
 				"emoji": true
 			}
 		}
