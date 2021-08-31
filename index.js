@@ -47,28 +47,11 @@ app.command('/book', async ({ack,payload,client}) => {
     });
 });
 
-//action集
-// bookコマンドの際の各sectionの反応
-app.action('add_place', async ({ack,respond,action}) => {
-    await ack();
-});
-
-app.action('add_date', async ({ack,respond,action}) => {
-    await ack();
-    
-});
-
-app.action('add_start_time', async ({ack,respond,action}) => {
-    await ack();
-    
-});
-
-app.action('add_finish_time', async ({ack,respond,action}) => {
-    await ack(); 
-});
-
 //bookコマンド modal submit時
 app.view('modal_view', async ({ ack, body, view}) => {
+    await ack();
+    console.log(view)
+    /*
     if(view["state"]["values"]["block_place"]["add_place"].selected_option == null) { 
         ack(
             {
@@ -76,8 +59,7 @@ app.view('modal_view', async ({ ack, body, view}) => {
                 "errors": {
                 "block_place": "error message"
             }
-        }); // 異常系
-        
+        }); // 異常系s   
     } else {
         ack(); // 正常系
         var place_data = view["state"]["values"]["block_place"]["add_place"].selected_option.text.text;
@@ -87,6 +69,7 @@ app.view('modal_view', async ({ ack, body, view}) => {
         memo.push(place_data,date_data,start_data,finish_data);
         checkMessage(place_data,date_data,start_data,finish_data,body.user.name);
     }
+    */
 });
 
 (async () => {
