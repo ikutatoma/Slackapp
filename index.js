@@ -8,23 +8,6 @@ admin.initializeApp({
 
 const db = admin.firestore();
 
-
-db.collection('book').add({
-    "room": '1-7 : 中学',
-    "start": '16:00',
-    "finish": '14:00',
-    "date": '2021-10-31'
-});
-
-db.collection('book').get()
-    .then((res) => {
-        res.forEach((doc) => {
-            console.log(doc.id, '=>', doc.data());
-        });
-    });
-
-
-/*
 //ここからslackApp
 const book = require('./components/book');
 const {App} = require('@slack/bolt');
@@ -108,4 +91,3 @@ app.view('modal_view', async ({ ack, body, view}) => {
     console.log("Hello World, thank you for waiting");
     firstMessage();
 })();
-*/
