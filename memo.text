@@ -12,3 +12,8 @@ db.collection('book').get()
         });
     });
 
+ db.collection('posts').add({
+      title: title,
+      content: content,
+      authorName: authorName
+    })

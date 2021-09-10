@@ -1,3 +1,4 @@
+//DBの設定
 const admin = require("firebase-admin");
 const serviceAccount = require("./slackapp-94a6a-firebase-adminsdk-2bkmx-62333c78f8.json");
 
@@ -10,6 +11,7 @@ const db = admin.firestore();
 
 //ここからslackApp
 const book = require('./components/book');
+//const checkBox = require('./components/checkBox') 確認checkFormのsection
 const {App} = require('@slack/bolt');
 const { WebClient } = require('@slack/web-api');
 let memo = [];
@@ -36,16 +38,34 @@ const firstMessage = async() =>{
 
 
 //bookコマンド 送信後のメッセージ
-const checkMessage = async(place_data,date_data,start_data,finish_data,user_name) =>{
-    const user = "@" + user_name
+const checkMessage = async(memo) =>{
+    const user = "@" + memo[4];
     const prefaceText = "以下の内容で送信しました。入力に間違いがないか確認してください！\nまだプロトタイプなので申し訳ありませんが、入力間違いがありましたら/deleteと打って削除をお願いします(/deleteすら未実装)...\n";
-    const contentText = "\n日時 : " + date_data + "\n場所 : " + place_data + "\n開始時間 : " + start_data + "\n終了時間 : " + finish_data;
+    const contentText = "\n日時 : " + memo[1] + "\n場所 : " + memo[0] + "\n開始時間 : " + memo[2] + "\n終了時間 : " + memo[3];
     const client = new WebClient(token);
     var params = {
       channel: user,
       text:prefaceText + contentText
     };
     await client.chat.postMessage(params);
+}
+
+//DBに送信
+const sendDb = content =>{
+    var place = content[0]
+    var date = content[1]
+    var start = content[2]
+    var finish = content[3]
+    var sendUser = content[4]
+
+    db.collection('book').add({
+        "place": place,
+        "date": date,
+        "start": start,
+        "finish":finish,
+        "user":sendUser
+      });
+    checkMessage(content);
 }
 
 //command集
@@ -57,9 +77,25 @@ app.command('/book', async ({ack,payload,client}) => {
     });
 });
 
-//bookコマンド modal submit時
+app.command('/delete', async({ack,respond}) => {
 
+    db.collection('book').get()
+    .then((res) => {
+        res.forEach((doc) => {
+            console.log(doc.id, '=>', doc.data());
+        });
+    });
+
+    await ack();
+    await respond({
+      response_type:'in_channel',
+      blocks:userBooks
+    });
+});
+
+//bookコマンド modal submit時
 app.view('modal_view', async ({ ack, body, view}) => {
+    memo = [];
     var place_cont= view["state"]["values"]["block_place"]["add_place"].selected_option;
     var date_cont= view["state"]["values"]["block_date"]["add_date"].selected_date;
     var start_cont= view["state"]["values"]["block_start_time"]["add_start_time"].selected_option;
@@ -81,8 +117,8 @@ app.view('modal_view', async ({ ack, body, view}) => {
         var date_data = date_cont;
         var start_data = start_cont.text.text;
         var finish_data = finish_cont.text.text;
-        memo.push(place_data,date_data,start_data,finish_data);
-        checkMessage(place_data,date_data,start_data,finish_data,body.user.name);
+        memo.push(place_data,date_data,start_data,finish_data,body.user.name);
+        sendDb(memo);
     }
 });
 
