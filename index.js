@@ -1,33 +1,28 @@
-import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
-// Follow this pattern to import other Firebase services
-// import { } from 'firebase/<service>';
+const admin = require("firebase-admin");
+const serviceAccount = require("./slackapp-94a6a-firebase-adminsdk-2bkmx-62333c78f8.json");
 
-// TODO: Replace the following with your app's Firebase project configuration
-
-const serviceAccount = require("path/to/serviceAccountKey.json");
-
-const firebaseConfig = {
-    apiKey: "AIzaSyAJ9TwQfA4Yh23BQY1iyf3MYl5bDuUHocU",
-    authDomain: "slackapp-94a6a.firebaseapp.com",
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
     databaseURL: "https://slackapp-94a6a-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "slackapp-94a6a",
-    storageBucket: "slackapp-94a6a.appspot.com",
-    messagingSenderId: "278641181128",
-    appId: "1:278641181128:web:4639fa7b2d6d2c000200fd",
-    measurementId: "G-YT7T0C8XST"
-};
+});
 
-const iniapp = initializeApp(firebaseConfig);
-const db = getFirestore(iniapp);
+const db = admin.firestore();
 
-// Get a list of cities from your database
-async function getCities(db) {
-  const citiesCol = collection(db, 'cities');
-  const citySnapshot = await getDocs(citiesCol);
-  const cityList = citySnapshot.docs.map(doc => doc.data());
-  return cityList;
-}
+
+db.collection('book').add({
+    "room": '1-7 : 中学',
+    "start": '16:00',
+    "finish": '14:00',
+    "date": '2021-10-31'
+});
+
+db.collection('book').get()
+    .then((res) => {
+        res.forEach((doc) => {
+            console.log(doc.id, '=>', doc.data());
+        });
+    });
+
 
 /*
 //ここからslackApp
