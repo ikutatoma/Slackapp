@@ -1,8 +1,17 @@
-//const book = require('./components/book');
+const admin = require("firebase-admin");
+const serviceAccount = require("./slackapp-94a6a-firebase-adminsdk-2bkmx-62333c78f8.json");
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://slackapp-94a6a-default-rtdb.asia-southeast1.firebasedatabase.app",
+});
+
+const db = admin.firestore();
+
+//ここからslackApp
 const book = require('./components/book');
 const {App} = require('@slack/bolt');
 const { WebClient } = require('@slack/web-api');
-
 let memo = [];
 let today = new Date();
 book.blocks[2].element.initial_date = today.getFullYear() + "-" +  (today.getMonth() + 1) + "-"+ today.getDate();
@@ -12,7 +21,7 @@ const signingSecret = "9a9b592ece65b941f12e58a65130a396";
 const app = new App({
     token: token,
     signingSecret:signingSecret,
-});
+}); 
 
 //message集
 //最初に見せるメッセージ
@@ -24,6 +33,7 @@ const firstMessage = async() =>{
     }; 
     await client.chat.postMessage(params);
 }
+
 
 //bookコマンド 送信後のメッセージ
 const checkMessage = async(place_data,date_data,start_data,finish_data,user_name) =>{
