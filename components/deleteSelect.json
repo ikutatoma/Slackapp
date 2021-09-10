@@ -1,5 +1,6 @@
 {
     "type": "modal",
+    "callback_id" :"delete_view",
     "title": {
         "type": "plain_text",
         "text": "My App",
@@ -30,7 +31,7 @@
                         "value": ""
                     }
                 ],
-                "action_id": "checkboxes-action"
+                "action_id": "checkboxesAction"
             },
             "label": {
                 "type": "plain_text",

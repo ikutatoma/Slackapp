@@ -68,7 +68,7 @@ const sendDb = content =>{
     checkMessage(content);
 }
 
-//deleteの選択肢できるJsonを作る
+//userの予約したの選択肢できるJsonを作る
 const UserMakeJson = (user_book) => {
     var formerJson = deleteSelect;
     for(var i = 0; i< user_book.length;i++){
@@ -85,12 +85,14 @@ const UserMakeJson = (user_book) => {
         date = user_book[i].date;
         start = user_book[i].start;
         finish = user_book[i].finish;
+        docId = user_book[i].id;
         
         formerJson.blocks[0].element.options[i].text.text = "日時 : " + date + "\n" + "場所 : " + place + "\n" + "開始時間 : " +  start + "\n" + "終了時間 : " +  finish + "\n----------------------------";
-        formerJson.blocks[0].element.options[i].value = "value-" + i.toString();
+        formerJson.blocks[0].element.options[i].value = "value-" + docId;
     }
     return deleteSelect;
 }
+
 
 //command集
 app.command('/book', async ({ack,payload,client}) => {
@@ -108,17 +110,15 @@ app.command('/delete', async({ack,respond,body,client,payload}) => {
     .then((res) => {
         res.forEach((doc) => {
             var data = doc.data();
+            data.id = doc.id
             user_book.push(data);
         });
     });
-
     const user_block = UserMakeJson(user_book);
-    
     await client.views.open({
         trigger_id: payload.trigger_id,
         view:user_block
     });
-    
 });
 
 //bookコマンド modal submit時
@@ -149,6 +149,13 @@ app.view('modal_view', async ({ ack, body, view}) => {
         sendDb(memo);
     }
 });
+
+app.view('delete_view', async ({ ack,body,view}) => {
+    ack();   
+    var aa = Object.keys(view["state"]["values"]);
+    console.log(view["state"]["values"][aa[0]].checkboxesAction.selected_options)
+});
+
 
 (async () => {
     await app.start(3000);
