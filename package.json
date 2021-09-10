@@ -1,18 +1,29 @@
 {
   "name": "slack_bolt_dev",
   "version": "1.0.0",
+  "description": "## urlが変わった場合 SlackAPI MyAppからEvent Subscription, Slash Commands, Interactivity & Shortcuts のurlを変更する",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ikutatoma/SlackAPP.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ikutatoma/SlackAPP/issues"
+  },
+  "homepage": "https://github.com/ikutatoma/SlackAPP#readme",
   "dependencies": {
     "@slack/bolt": "^3.6.0",
-    "@slack/web-api": "^6.4.0",
-    "express": "^4.17.1"
+    "@slack/events-api": "^3.0.1",
+    "express": "^4.17.1",
+    "firebase": "^9.0.2",
+    "firebase-admin": "^9.11.1"
   },
   "devDependencies": {},
-  "description": ""
+  "type": "module"
 }

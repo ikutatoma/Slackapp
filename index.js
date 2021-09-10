@@ -1,8 +1,39 @@
-//const book = require('./components/book');
+import { initializeApp } from 'firebase/app';
+import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+// Follow this pattern to import other Firebase services
+// import { } from 'firebase/<service>';
+
+// TODO: Replace the following with your app's Firebase project configuration
+
+const serviceAccount = require("path/to/serviceAccountKey.json");
+
+const firebaseConfig = {
+    apiKey: "AIzaSyAJ9TwQfA4Yh23BQY1iyf3MYl5bDuUHocU",
+    authDomain: "slackapp-94a6a.firebaseapp.com",
+    databaseURL: "https://slackapp-94a6a-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "slackapp-94a6a",
+    storageBucket: "slackapp-94a6a.appspot.com",
+    messagingSenderId: "278641181128",
+    appId: "1:278641181128:web:4639fa7b2d6d2c000200fd",
+    measurementId: "G-YT7T0C8XST"
+};
+
+const iniapp = initializeApp(firebaseConfig);
+const db = getFirestore(iniapp);
+
+// Get a list of cities from your database
+async function getCities(db) {
+  const citiesCol = collection(db, 'cities');
+  const citySnapshot = await getDocs(citiesCol);
+  const cityList = citySnapshot.docs.map(doc => doc.data());
+  return cityList;
+}
+
+/*
+//ここからslackApp
 const book = require('./components/book');
 const {App} = require('@slack/bolt');
 const { WebClient } = require('@slack/web-api');
-
 let memo = [];
 let today = new Date();
 book.blocks[2].element.initial_date = today.getFullYear() + "-" +  (today.getMonth() + 1) + "-"+ today.getDate();
@@ -12,7 +43,7 @@ const signingSecret = "9a9b592ece65b941f12e58a65130a396";
 const app = new App({
     token: token,
     signingSecret:signingSecret,
-});
+}); 
 
 //message集
 //最初に見せるメッセージ
@@ -24,6 +55,7 @@ const firstMessage = async() =>{
     }; 
     await client.chat.postMessage(params);
 }
+
 
 //bookコマンド 送信後のメッセージ
 const checkMessage = async(place_data,date_data,start_data,finish_data,user_name) =>{
@@ -81,3 +113,4 @@ app.view('modal_view', async ({ ack, body, view}) => {
     console.log("Hello World, thank you for waiting");
     firstMessage();
 })();
+*/
