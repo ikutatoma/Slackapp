@@ -11,7 +11,8 @@ const db = admin.firestore();
 
 //ここからslackApp
 const book = require('./components/book');
-//const checkBox = require('./components/checkBox') 確認checkFormのsection
+const checkBox = require('./components/checkBox');
+const deleteSelect = require('./components/deleteSelect')
 const {App} = require('@slack/bolt');
 const { WebClient } = require('@slack/web-api');
 let memo = [];
@@ -26,7 +27,6 @@ const app = new App({
 }); 
 
 //message集
-//最初に見せるメッセージ
 const firstMessage = async() =>{
     const client = new WebClient(token);
     const params = {
@@ -68,6 +68,30 @@ const sendDb = content =>{
     checkMessage(content);
 }
 
+//deleteの選択肢できるJsonを作る
+const UserMakeJson = (user_book) => {
+    var formerJson = deleteSelect;
+    for(var i = 0; i< user_book.length;i++){
+        formerJson.blocks[0].element.options[i] = {
+            "text":{
+                "type":'plain_text',
+                "text":'',
+                'emoji': true
+            },
+            "value":''  
+        }
+
+        place = user_book[i].place;
+        date = user_book[i].date;
+        start = user_book[i].start;
+        finish = user_book[i].finish;
+        
+        formerJson.blocks[0].element.options[i].text.text = "日時 : " + date + "\n" + "場所 : " + place + "\n" + "開始時間 : " +  start + "\n" + "終了時間 : " +  finish + "\n----------------------------";
+        formerJson.blocks[0].element.options[i].value = "value-" + i.toString();
+    }
+    return deleteSelect;
+}
+
 //command集
 app.command('/book', async ({ack,payload,client}) => {
     await ack();
@@ -77,20 +101,24 @@ app.command('/book', async ({ack,payload,client}) => {
     });
 });
 
-app.command('/delete', async({ack,respond}) => {
-
-    db.collection('book').get()
+app.command('/delete', async({ack,respond,body,client,payload}) => {
+    await ack();
+    var user_book = [];
+    await db.collection('book').where('user', '==', body.user_name).get()
     .then((res) => {
         res.forEach((doc) => {
-            console.log(doc.id, '=>', doc.data());
+            var data = doc.data();
+            user_book.push(data);
         });
     });
 
-    await ack();
-    await respond({
-      response_type:'in_channel',
-      blocks:userBooks
+    const user_block = UserMakeJson(user_book);
+    
+    await client.views.open({
+        trigger_id: payload.trigger_id,
+        view:user_block
     });
+    
 });
 
 //bookコマンド modal submit時
