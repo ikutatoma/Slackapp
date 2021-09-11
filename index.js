@@ -12,6 +12,7 @@ const db = admin.firestore();
 //ここからslackApp
 const book = require('./components/book');
 const checkBox = require('./components/checkBox');
+const plainJson =  require('./components/plain');
 const deleteSelect = require('./components/deleteSelect')
 const {App} = require('@slack/bolt');
 const { WebClient } = require('@slack/web-api');
@@ -86,7 +87,7 @@ const dateAscOrder = (book) =>{
     return book
 }
 
-//userの予約したの選択肢できるJsonを作る(delete用)
+//削除用Bookを選択できるJson
 const UserBookDeleteJson = (user_book) => {
     const formerJson = deleteSelect;
     let indCount = 0;
@@ -103,13 +104,13 @@ const UserBookDeleteJson = (user_book) => {
                 },
                 "value":'',
             }
-            place = user_book[i].place;
-            date = new Date(dataUni*1000);
-            start = user_book[i].start;
-            finish = user_book[i].finish;
-            docId = user_book[i].id;
+            let place = user_book[i].place;
+            let date = new Date(dataUni*1000);
+            let start = user_book[i].start;
+            let finish = user_book[i].finish;
+            let docId = user_book[i].id;
 
-            dateStr = dateToString(date);
+            let dateStr = dateToString(date);
             
             formerJson.blocks[0].element.options[indCount].text.text = "日時 : " + dateStr + "\n" + "場所 : " + place + "\n" + "開始時間 : " +  start + "\n" + "終了時間 : " +  finish + "\n----------------------------";
             formerJson.blocks[0].element.options[indCount].value = docId;
@@ -117,6 +118,72 @@ const UserBookDeleteJson = (user_book) => {
         }
     }
     return formerJson;
+}
+
+//全userが予約したBookを表示するJson
+const AllBookShowJson = (user_book) =>{
+    const showBook = plainJson;
+    showBook.blocks[0].text.text = "予約されている全ての鍵はこちらになります！";
+    let indCount = 1;
+    let todayUni  = Math.floor(today.getTime() / 1000);
+    for(var i = 0; i< user_book.length;i++){   
+        var dataUni = user_book[i].date._seconds;
+        if( dataUni >= todayUni){
+            showBook.blocks[indCount] = {
+                "type": "section",
+                "text": {
+                    "type": "plain_text",
+                    "text": "",
+                    "emoji": true
+                }
+            }
+
+            let place = user_book[i].place;
+            let date = new Date(dataUni*1000);
+            let start = user_book[i].start;
+            let finish = user_book[i].finish;
+            let userId = user_book[0].user
+
+            let dateStr = dateToString(date);
+
+            showBook.blocks[indCount].text.text = "日時 : " + dateStr + "\n場所 : " + place + "\n開始時間 : " +  start + "\n終了時間 : " +  finish + "\n予約したユーザー : "+ userId + "\n----------------------------";
+
+            indCount++;
+        }
+    }
+    return showBook;
+}
+
+//mykeysコマンドを実行したユーザーのBookを表示
+const UserBookShowJson = (user_book) =>{
+    const showBook = plainJson;
+    showBook.blocks[0].text.text = "あなたが予約している鍵はこちらになります！";
+    let indCount = 1;
+    let todayUni  = Math.floor(today.getTime() / 1000);
+    for(var i = 0; i< user_book.length;i++){   
+        var dataUni = user_book[i].date._seconds;
+        if( dataUni >= todayUni){
+            showBook.blocks[indCount] = {
+                "type": "section",
+                "text": {
+                    "type": "plain_text",
+                    "text": "",
+                    "emoji": true
+                }
+            }
+            
+            let place = user_book[i].place;
+            let date = new Date(dataUni*1000);
+            let start = user_book[i].start;
+            let finish = user_book[i].finish;
+
+            let dateStr = dateToString(date);
+
+            showBook.blocks[indCount].text.text = "日時 : " + dateStr + "\n場所 : " + place + "\n開始時間 : " +  start + "\n終了時間 : " +  finish + "\n----------------------------";
+            indCount++;
+        }
+    }
+    return showBook;
 }
 
 //command集
@@ -145,6 +212,44 @@ app.command('/delete', async({ack,respond,body,client,payload}) => {
         trigger_id: payload.trigger_id,
         view:user_block
     });
+});
+
+app.command('/all-keys', async ({ack,body,client,payload,respond}) => {
+    await ack();
+    var all_user_book = [];
+    await db.collection('book').get()
+    .then((res) => {
+        res.forEach((doc) => {
+            var data = doc.data();
+            data.id = doc.id
+            all_user_book.push(data);
+        });
+    });
+    const sortUserBook = dateAscOrder(all_user_book);
+    const all_block = AllBookShowJson(sortUserBook);
+    await respond({
+        response_type:'in_channel',
+        blocks:all_block.blocks
+    })
+});
+
+app.command('/my-keys', async ({ack,body,client,payload,respond}) => {
+    await ack();
+    var user_book = [];
+    await db.collection('book').where('user', '==', body.user_name).get()
+    .then((res) => {
+        res.forEach((doc) => {
+            var data = doc.data();
+            data.id = doc.id
+            user_book.push(data);
+        });
+    });
+    const sortUserBook = dateAscOrder(user_book);
+    const user_block = UserBookShowJson(sortUserBook);
+    await respond({
+        response_type:'in_channel',
+        blocks:user_block.blocks
+    })
 });
 
 //bookコマンド modal submit時
