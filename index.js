@@ -39,8 +39,9 @@ const firstMessage = async() =>{
 //bookコマンド 送信後のメッセージ
 const checkMessage = async(memo) =>{
     const user = "@" + memo[4];
+    const sendDate = new Date(memo[1].getTime());
     const prefaceText = "以下の内容で送信しました。入力に間違いがないか確認してください！\nまだプロトタイプなので申し訳ありませんが、入力間違いがありましたら/deleteと打って削除をお願いします\n";
-    const contentText = "\n------------予約内容------------\n\n日時 : " + memo[1] + "\n\n場所 : " + memo[0] + "\n\n開始時間 : " + memo[2] + "\n\n終了時間 : " + memo[3];
+    const contentText = "\n------------予約内容------------\n\n日時 : " + dateToString(sendDate) + "\n\n場所 : " + memo[0] + "\n\n開始時間 : " + memo[2] + "\n\n終了時間 : " + memo[3];
     const client = new WebClient(token);
     var params = {
       channel: user,
@@ -76,26 +77,33 @@ const dateToString = (date) =>{
 
 //userの予約したの選択肢できるJsonを作る(delete用)
 const UserBookDeleteJson = (user_book) => {
-    var formerJson = deleteSelect;
-    for(var i = 0; i< user_book.length;i++){
-        formerJson.blocks[0].element.options[i] = {
-            "text":{
-                "type":'plain_text',
-                "text":'',
-                'emoji': true
-            },
-            "value":''  
-        }
-        place = user_book[i].place;
-        date = new Date(user_book[i].date._seconds*1000);
-        start = user_book[i].start;
-        finish = user_book[i].finish;
-        docId = user_book[i].id;
+    const formerJson = deleteSelect;
+    let indCount = 0;
+    let todayUni  = Math.floor(today.getTime() / 1000);
+    for(var i = 0; i< user_book.length;i++){   
+        var dataUni = user_book[i].date._seconds;
 
-        dateStr = dateToString(date);
-        
-        formerJson.blocks[0].element.options[i].text.text = "日時 : " + dateStr + "\n" + "場所 : " + place + "\n" + "開始時間 : " +  start + "\n" + "終了時間 : " +  finish + "\n----------------------------";
-        formerJson.blocks[0].element.options[i].value = docId;
+        if( dataUni >= todayUni){
+            formerJson.blocks[0].element.options[indCount] = {
+                "text":{
+                    "type":'plain_text',
+                    "text":'',
+                    'emoji': true
+                },
+                "value":''  
+            }
+            place = user_book[i].place;
+            date = new Date(dataUni*1000);
+            start = user_book[i].start;
+            finish = user_book[i].finish;
+            docId = user_book[i].id;
+
+            dateStr = dateToString(date);
+            
+            formerJson.blocks[0].element.options[indCount].text.text = "日時 : " + dateStr + "\n" + "場所 : " + place + "\n" + "開始時間 : " +  start + "\n" + "終了時間 : " +  finish + "\n----------------------------";
+            formerJson.blocks[0].element.options[indCount].value = docId;
+            indCount++;
+        }
     }
     return deleteSelect;
 }
