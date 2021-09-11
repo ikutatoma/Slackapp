@@ -36,12 +36,11 @@ const firstMessage = async() =>{
     await client.chat.postMessage(params);
 }
 
-
 //bookコマンド 送信後のメッセージ
 const checkMessage = async(memo) =>{
     const user = "@" + memo[4];
     const prefaceText = "以下の内容で送信しました。入力に間違いがないか確認してください！\nまだプロトタイプなので申し訳ありませんが、入力間違いがありましたら/deleteと打って削除をお願いします\n";
-    const contentText = "\n日時 : " + memo[1] + "\n場所 : " + memo[0] + "\n開始時間 : " + memo[2] + "\n終了時間 : " + memo[3];
+    const contentText = "\n------------予約内容------------\n\n日時 : " + memo[1] + "\n\n場所 : " + memo[0] + "\n\n開始時間 : " + memo[2] + "\n\n終了時間 : " + memo[3];
     const client = new WebClient(token);
     var params = {
       channel: user,
@@ -68,6 +67,13 @@ const sendDb = content =>{
     checkMessage(content);
 }
 
+const dateToString = (date) =>{
+    var year = date.getFullYear();
+    var month = date.getMonth()+1;
+    var date = date.getDate();
+    return year + "-" + month + "-" + date
+}
+
 //userの予約したの選択肢できるJsonを作る(delete用)
 const UserBookDeleteJson = (user_book) => {
     var formerJson = deleteSelect;
@@ -81,17 +87,18 @@ const UserBookDeleteJson = (user_book) => {
             "value":''  
         }
         place = user_book[i].place;
-        date = user_book[i].date;
+        date = new Date(user_book[i].date._seconds*1000);
         start = user_book[i].start;
         finish = user_book[i].finish;
         docId = user_book[i].id;
+
+        dateStr = dateToString(date);
         
-        formerJson.blocks[0].element.options[i].text.text = "日時 : " + date + "\n" + "場所 : " + place + "\n" + "開始時間 : " +  start + "\n" + "終了時間 : " +  finish + "\n----------------------------";
+        formerJson.blocks[0].element.options[i].text.text = "日時 : " + dateStr + "\n" + "場所 : " + place + "\n" + "開始時間 : " +  start + "\n" + "終了時間 : " +  finish + "\n----------------------------";
         formerJson.blocks[0].element.options[i].value = docId;
     }
     return deleteSelect;
 }
-
 
 //command集
 app.command('/book', async ({ack,payload,client}) => {
@@ -141,7 +148,7 @@ app.view('modal_view', async ({ ack, body, view}) => {
     } else {
         ack();
         var place_data = place_cont.text.text;
-        var date_data = date_cont;
+        var date_data = new Date(date_cont);
         var start_data = start_cont.text.text;
         var finish_data = finish_cont.text.text;
         memo.push(place_data,date_data,start_data,finish_data,body.user.name);
