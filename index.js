@@ -26,12 +26,12 @@ const app = new App({
     signingSecret:signingSecret,
 }); 
 
-//message集
+//始めに見せるメッセージ
 const firstMessage = async() =>{
     const client = new WebClient(token);
     const params = {
       channel: 'keymanagement',
-      text: "鍵管理システム,プロトタイプです！「こんなことしてほしい！」「ここが使いずらい」などの意見を教えていただけるとすごく励みになります。\n使い方-------------\n/bookを実行すれば鍵の予約ができます。\n/deleteを実行すれば鍵の予約を削除できます。"
+      text: "鍵管理システム,プロトタイプです！「こんなことしてほしい！」「ここが使いずらい」などの意見を教えていただけるとすごく励みになります。\n使い方-------------\n/bookを実行すれば鍵の予約ができます。\n/deleteを実行すれば鍵の予約を削除できます。\n/mykeysを実行すればあなたが今予約している鍵の一覧が取得できます。\n/keysを実行すれば全てのuserの今予約されている鍵の一覧が取得できます。"
     }; 
     await client.chat.postMessage(params);
 }
@@ -68,8 +68,8 @@ const sendDb = content =>{
     checkMessage(content);
 }
 
-//userの予約したの選択肢できるJsonを作る
-const UserMakeJson = (user_book) => {
+//userの予約したの選択肢できるJsonを作る(delete用)
+const UserBookDeleteJson = (user_book) => {
     var formerJson = deleteSelect;
     for(var i = 0; i< user_book.length;i++){
         formerJson.blocks[0].element.options[i] = {
@@ -113,7 +113,7 @@ app.command('/delete', async({ack,respond,body,client,payload}) => {
             user_book.push(data);
         });
     });
-    const user_block = UserMakeJson(user_book);
+    const user_block = UserBookDeleteJson(user_book);
     await client.views.open({
         trigger_id: payload.trigger_id,
         view:user_block
@@ -148,7 +148,7 @@ app.view('modal_view', async ({ ack, body, view}) => {
         sendDb(memo);
     }
 });
-
+//deleteコマンド modal submit時
 app.view('delete_view', async ({ ack,body,view}) => {
     ack();   
     var obKeys = Object.keys(view["state"]["values"]);
