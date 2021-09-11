@@ -11,7 +11,6 @@ const db = admin.firestore();
 
 //ここからslackApp
 const book = require('./components/book');
-const checkBox = require('./components/checkBox');
 const plainJson =  require('./components/plain');
 const deleteSelect = require('./components/deleteSelect')
 const {App} = require('@slack/bolt');
@@ -49,24 +48,6 @@ const checkMessage = async(memo) =>{
       text:prefaceText + contentText
     };
     await client.chat.postMessage(params);
-}
-
-//DBに送信
-const sendDb = content =>{
-    var place = content[0]
-    var date = content[1]
-    var start = content[2]
-    var finish = content[3]
-    var sendUser = content[4]
-
-    db.collection('book').add({
-        "place": place,
-        "date": date,
-        "start": start,
-        "finish":finish,
-        "user":sendUser
-      });
-    checkMessage(content);
 }
 
 //Date型を文字列にする。
@@ -255,10 +236,10 @@ app.command('/my-keys', async ({ack,body,client,payload,respond}) => {
 //bookコマンド modal submit時
 app.view('modal_view', async ({ ack, body, view}) => {
     memo = [];
-    var place_cont= view["state"]["values"]["block_place"]["add_place"].selected_option;
-    var date_cont= view["state"]["values"]["block_date"]["add_date"].selected_date;
-    var start_cont= view["state"]["values"]["block_start_time"]["add_start_time"].selected_option;
-    var finish_cont= view["state"]["values"]["block_finish_time"]["add_finish_time"].selected_option;
+    const place_cont= view["state"]["values"]["block_place"]["add_place"].selected_option;
+    const date_cont= view["state"]["values"]["block_date"]["add_date"].selected_date;
+    const start_cont= view["state"]["values"]["block_start_time"]["add_start_time"].selected_option;
+    const finish_cont= view["state"]["values"]["block_finish_time"]["add_finish_time"].selected_option;
     if(place_cont == null || date_cont == null || start_cont == null || finish_cont == null) { 
         ack(
             {
@@ -272,12 +253,20 @@ app.view('modal_view', async ({ ack, body, view}) => {
         });
     } else {
         ack();
-        var place_data = place_cont.text.text;
-        var date_data = new Date(date_cont);
-        var start_data = start_cont.text.text;
-        var finish_data = finish_cont.text.text;
+        const place_data = place_cont.text.text;
+        const date_data = new Date(date_cont);
+        const start_data = start_cont.text.text;
+        const finish_data = finish_cont.text.text;
         memo.push(place_data,date_data,start_data,finish_data,body.user.name);
-        sendDb(memo);
+
+        db.collection('book').add({
+            "place": place_data,
+            "date": date_data,
+            "start": start_data,
+            "finish":finish_data,
+            "user":body.user.name
+        });
+        checkMessage(memo);
     }
 });
 //deleteコマンド modal submit時
@@ -290,7 +279,6 @@ app.view('delete_view', async ({ ack,body,view}) => {
         await db.collection('book').doc(dataDoc).delete();
     }
 });
-
 
 (async () => {
     await app.start(3000);
