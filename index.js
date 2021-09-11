@@ -68,11 +68,22 @@ const sendDb = content =>{
     checkMessage(content);
 }
 
+//Date型を文字列にする。
 const dateToString = (date) =>{
     var year = date.getFullYear();
     var month = date.getMonth()+1;
     var date = date.getDate();
     return year + "-" + month + "-" + date
+}
+
+//Bookを日付順(昇順)にソートする。
+const dateAscOrder = (book) =>{
+    book.sort(function(a,b){
+        if(a.date._seconds>b.date._seconds) return -1;
+        if(a.date._seconds < b.date._seconds) return 1;
+        return 0;
+    });
+    return book
 }
 
 //userの予約したの選択肢できるJsonを作る(delete用)
@@ -90,7 +101,7 @@ const UserBookDeleteJson = (user_book) => {
                     "text":'',
                     'emoji': true
                 },
-                "value":''  
+                "value":'',
             }
             place = user_book[i].place;
             date = new Date(dataUni*1000);
@@ -105,7 +116,7 @@ const UserBookDeleteJson = (user_book) => {
             indCount++;
         }
     }
-    return deleteSelect;
+    return formerJson;
 }
 
 //command集
@@ -128,7 +139,8 @@ app.command('/delete', async({ack,respond,body,client,payload}) => {
             user_book.push(data);
         });
     });
-    const user_block = UserBookDeleteJson(user_book);
+    const sortUserBook = dateAscOrder(user_book);
+    const user_block = UserBookDeleteJson(sortUserBook);
     await client.views.open({
         trigger_id: payload.trigger_id,
         view:user_block
