@@ -77,7 +77,7 @@ const dateToString = (date) =>{
     return year + "-" + month + "-" + date
 }
 
-//Bookを日付順(昇順)にソートする。
+//keyを日付順(昇順)にソートする。
 const dateAscOrder = (book) =>{
     book.sort(function(a,b){
         if(a.date._seconds>b.date._seconds) return -1;
@@ -87,7 +87,7 @@ const dateAscOrder = (book) =>{
     return book
 }
 
-//削除用Bookを選択できるJson
+//削除用keyを選択できるJson
 const UserBookDeleteJson = (user_book) => {
     const formerJson = deleteSelect;
     let indCount = 0;
@@ -120,7 +120,7 @@ const UserBookDeleteJson = (user_book) => {
     return formerJson;
 }
 
-//全userが予約したBookを表示するJson
+//全userが予約したkeyを表示するJson
 const AllBookShowJson = (user_book) =>{
     const showBook = plainJson;
     showBook.blocks[0].text.text = "予約されている全ての鍵はこちらになります！";
@@ -154,7 +154,7 @@ const AllBookShowJson = (user_book) =>{
     return showBook;
 }
 
-//mykeysコマンドを実行したユーザーのBookを表示
+//mykeysコマンドを実行したユーザーのkeyを表示
 const UserBookShowJson = (user_book) =>{
     const showBook = plainJson;
     showBook.blocks[0].text.text = "あなたが予約している鍵はこちらになります！";
@@ -171,7 +171,7 @@ const UserBookShowJson = (user_book) =>{
                     "emoji": true
                 }
             }
-            
+
             let place = user_book[i].place;
             let date = new Date(dataUni*1000);
             let start = user_book[i].start;
@@ -294,6 +294,5 @@ app.view('delete_view', async ({ ack,body,view}) => {
 
 (async () => {
     await app.start(3000);
-    console.log("Hello World, thank you for waiting");
     firstMessage();
 })();
