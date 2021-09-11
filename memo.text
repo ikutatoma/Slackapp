@@ -11,9 +11,3 @@ db.collection('book').get()
             console.log(doc.id, '=>', doc.data());
         });
     });
-
- db.collection('posts').add({
-      title: title,
-      content: content,
-      authorName: authorName
-    })

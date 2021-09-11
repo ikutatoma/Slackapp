@@ -31,7 +31,7 @@ const firstMessage = async() =>{
     const client = new WebClient(token);
     const params = {
       channel: 'keymanagement',
-      text: "鍵管理システム,プロトタイプです！「こんなことしてほしい！」「ここが使いずらい」などの意見を教えていただけるとすごく励みになります。\n使い方 : /bookを実行すれば鍵の予約ができます。"
+      text: "鍵管理システム,プロトタイプです！「こんなことしてほしい！」「ここが使いずらい」などの意見を教えていただけるとすごく励みになります。\n使い方-------------\n/bookを実行すれば鍵の予約ができます。\n/deleteを実行すれば鍵の予約を削除できます。"
     }; 
     await client.chat.postMessage(params);
 }
@@ -40,7 +40,7 @@ const firstMessage = async() =>{
 //bookコマンド 送信後のメッセージ
 const checkMessage = async(memo) =>{
     const user = "@" + memo[4];
-    const prefaceText = "以下の内容で送信しました。入力に間違いがないか確認してください！\nまだプロトタイプなので申し訳ありませんが、入力間違いがありましたら/deleteと打って削除をお願いします(/deleteすら未実装)...\n";
+    const prefaceText = "以下の内容で送信しました。入力に間違いがないか確認してください！\nまだプロトタイプなので申し訳ありませんが、入力間違いがありましたら/deleteと打って削除をお願いします\n";
     const contentText = "\n日時 : " + memo[1] + "\n場所 : " + memo[0] + "\n開始時間 : " + memo[2] + "\n終了時間 : " + memo[3];
     const client = new WebClient(token);
     var params = {
@@ -80,7 +80,6 @@ const UserMakeJson = (user_book) => {
             },
             "value":''  
         }
-
         place = user_book[i].place;
         date = user_book[i].date;
         start = user_book[i].start;
@@ -88,7 +87,7 @@ const UserMakeJson = (user_book) => {
         docId = user_book[i].id;
         
         formerJson.blocks[0].element.options[i].text.text = "日時 : " + date + "\n" + "場所 : " + place + "\n" + "開始時間 : " +  start + "\n" + "終了時間 : " +  finish + "\n----------------------------";
-        formerJson.blocks[0].element.options[i].value = "value-" + docId;
+        formerJson.blocks[0].element.options[i].value = docId;
     }
     return deleteSelect;
 }
@@ -152,8 +151,12 @@ app.view('modal_view', async ({ ack, body, view}) => {
 
 app.view('delete_view', async ({ ack,body,view}) => {
     ack();   
-    var aa = Object.keys(view["state"]["values"]);
-    console.log(view["state"]["values"][aa[0]].checkboxesAction.selected_options)
+    var obKeys = Object.keys(view["state"]["values"]);
+    deleDatas = view["state"]["values"][obKeys[0]].checkboxesAction.selected_options;
+    for(var i =0 ;i < deleDatas.length;i++){
+        var dataDoc = deleDatas[i].value
+        await db.collection('book').doc(dataDoc).delete();
+    }
 });
 
 
