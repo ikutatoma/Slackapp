@@ -1,0 +1,13 @@
+{
+    "type": "service_account",
+    "project_id": "slackapp-94a6a",
+    "private_key_id": "62333c78f882b422b9d266132b6cbca7385f500f",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDN/RsCN69OtFzH\n5EDJhWNHgvbqGFjmhScpKxwV4bD/jRS0bvVt0+Wa2U3RG6bN3kJvUn2MfoEHvF4T\nFueTKzzb2TpyJDzYv8yEHf7MDiXP2bitVdMstPLZKFbpncwhWWTJn1Bnkjy1g4bg\nL+Uz94SjYbH8d/161vj5d3JYr6pp8hZOSJTolx8DpOWFEBNjlsOnaLgaxfsOAy++\ng8uipxfvydjTiGmUmn84+F6zk8EIpkCEZDLhXBEdD5NMII8TfvfU6fXmMUMN5I2E\nc2PCiI1vySIPoauD0sKkCWEXLWL9KAJCp38wfHHl5wPGKCBZsKWHPlNJTp5Z1QYW\nSvbOg0zfAgMBAAECggEAZIFI8tGJq0yscmmnxMvc73DymbDMe5lfTKJ4nyKSEnZb\nMlhrTq2Te3Tol402237FCn0Evg6hVU1u10CXOALiPGCmuDd/KsCWgKYEArsqbtpL\n1eMo2MjnLtaUZYM1LNZpq0ic2hQLpALrRaqI2ky8Pl12EvnWx19pdor101jOvMbe\nK0KnQ3pAacJ75U0UQ/2JSrEIDsr1RPBKzaW/Bl9UhowFAPoPJWZoMnWpZMQxIYr2\nfqXDg2D1AjONg/I3NiYeDYeLw5osbVYiPXUhmZksANTz4n1/JB4OiKrSXMRqf3bp\nYLlWu3FDpGRdrnqDVsMX3awyq5WxTqQe6ziWE80s/QKBgQDtrag7V7313OSr/B7n\n01DcaHJMvVdw/Zfvw0lJ8WkOZkhAWz8lvfwCC8IyHcx/+TJ9owl0labUE+S8Rs0w\nnKcChUzL/ALxfvS0ok6aWHEHPZHP+5TwcljW+rMrVgSuo8jr+oPo3xfrQyk/nfoQ\nFxeHd9AxFt2c+sDv3tL/4HIRewKBgQDd3hW9aPuecgboTAeP5IdNEy0DdD2L/Yld\nuUOCAfRrhaaqmWXjl41nVWkHV6DFTLJIadlAPvucaqV8/qSVWHqJOPHJm1sE6PRb\nn2ZTke5UQmub+h+mzfHwgdpYxolmwMnBL6vbCL5Mlnv1EvmM583RsKf2GCnJMgq+\nUka41lX67QKBgQDKE2N9UNRJPU2OjAUaxSdyvbqwVCsL/hA34almHMJdY8j6Lpo5\n1JV2h9jME1nTVGQBPaTEYpg8p81J5kh+lDHKitsIc3NtL6uOCJEb2SYAKfDXC+dN\np2qxHOVIaxIACXDCcXPFgigr9iYT2JTLKVbv7oYrtm0lEm0HhEORGZriEQKBgEKD\nNKM+2MfsSTPUryOtD/7EM+doLpdMH6UwSBOugFbHj2pvaEMtiN+klEL2OyVK09uv\nl8iR2R5QPmJVeIOpLbr7jkixQT0clTzucV+2TOuHqfjtqBV6ggBm/U1F36UlQJag\nsvWMDnipWGnlEVjzmRk2y3OUVNqTHPNnePoqj0YVAoGAcufsBaAbg+yCGzUZJjtP\nFMbsD/xrGOiI8+ONcSZPnIYHXw/+IyPJ2aOXN6d49KsgLHYIp9xuNlHRvhTs2RMA\n3ZAgpV/vPpsAY48cArZcDMzVRc8tOQz42GuGyyARVkptr0Uwd/v+qQr74QcO7685\nCeWZx83d23UJ7Mw4+hfAS1Y=\n-----END PRIVATE KEY-----\n",
+    "client_email": "firebase-adminsdk-2bkmx@slackapp-94a6a.iam.gserviceaccount.com",
+    "client_id": "116498332266490385106",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-2bkmx%40slackapp-94a6a.iam.gserviceaccount.com"
+  }
+  
